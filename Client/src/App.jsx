@@ -1,7 +1,9 @@
+import Restaurants from './pages/Restaurants'
+
 function App() {
   return (
     <>
-      <h1>Hello World!</h1>
+      <Restaurants url={'http://localhost:3000/api/v1/restaurants'}/>
     </>
   )
 }

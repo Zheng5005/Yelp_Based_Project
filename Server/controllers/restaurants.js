@@ -39,10 +39,10 @@ const updateRestaurant = async (req, res) => {
     try {
         const {id} = req.params
         const {name, location, price_range} = req.body
-        const updateRes = await pool.query("UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4",
+        const updateRes = await pool.query("UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4 RETURNING *",
             [name, location, price_range, id]
         )
-        res.status(200).send("Restaurant Updated")
+        res.status(200).json(updateRes.rows[0])
     } catch (error) {
         console.log(error)
     }
@@ -51,10 +51,10 @@ const updateRestaurant = async (req, res) => {
 const deleteRestaurant = async (req, res) => {
     try {
         const {id} = req.params
-        const deleteRestaurant = await pool.query("DELETE FROM restaurants WHERE id = $1",
+        const deleteRestaurant = await pool.query("DELETE FROM restaurants WHERE id = $1 RETURNING id",
             [id]
         )
-        res.status(200).send('Restaurant Deleted')
+        res.status(200).json(deleteRestaurant.rows[0])
     } catch (error) {
         console.log(error)
     }
