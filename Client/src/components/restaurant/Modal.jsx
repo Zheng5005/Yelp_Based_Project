@@ -7,8 +7,7 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
     const [location, setLocation] = useState(locationUp ? locationUp : "")
     const [price_range, setPriceRange] = useState(priceRangeUp ? priceRangeUp : 1)
 
-    async function createResturant(e){
-        e.preventDefault()
+    async function createResturant(){
         try {
             const body = {name, location, price_range};
             const res = await fetch('http://localhost:3000/api/v1/restaurants', {
@@ -19,6 +18,29 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
             window.location.reload();
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    async function updateRestaurant() {
+        try {
+            const body = {name, location, price_range};
+            const res = await fetch(`http://localhost:3000/api/v1/restaurants/${id}`, {
+                method: "PATCH",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            })
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function onSubmit(e){
+        e.preventDefault()
+        if(nameUp && locationUp, priceRangeUp){
+            updateRestaurant()
+        } else{
+            createResturant()
         }
     }
 
@@ -34,7 +56,7 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
                         body
                     ) : (
                         <div>
-                            <form onSubmit={createResturant}>
+                            <form onSubmit={onSubmit}>
                                 <h5>Name:</h5>
                                 <input type="text" value={name} onChange={e => setName(e.target.value)}/>
 
@@ -44,7 +66,11 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
                                 <h5>Price Range:</h5>
                                 <input type="number" min="1" max="5" value={price_range} onChange={e => setPriceRange(parseInt(e.target.value, 10))}/>
 
-                                <button>Create</button>
+                                {
+                                    nameUp && locationUp && priceRangeUp ?
+                                    <button>Update</button>
+                                    : <button>Create</button>
+                                }
                             </form>
                         </div>
                     )}

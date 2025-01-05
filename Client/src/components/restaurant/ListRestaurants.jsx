@@ -1,4 +1,6 @@
 import "./css/ListRestaurant.css";
+import DeleteRestaurant from "./DeleteRestaurant";
+import EditRestaurant from "./EditRestaurant";
 
 function ListRestaurants({ restaurant }) {
   return (
@@ -7,8 +9,8 @@ function ListRestaurants({ restaurant }) {
         <td>{restaurant.name}</td>
         <td>{restaurant.location}</td>
         <td>{restaurant.price_range}</td>
-        <td><button>Update</button></td>
-        <td><button>Delete</button></td>
+        <td><EditRestaurant restaurant={restaurant}/></td>
+        <td><DeleteRestaurant restaurant={restaurant}/></td>
       </tr>
     </>
   );
