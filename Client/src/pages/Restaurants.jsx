@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ListRestaurants from "../components/restaurant/ListRestaurants";
+import CreateRestaurant from "../components/restaurant/CreateRestaurant";
 
 function Restaurants({ url }) {
   const [restaurants, setRestaurants] = useState([]);
@@ -36,7 +37,7 @@ function Restaurants({ url }) {
     <div>
       <div>
         <h1>Restaurants</h1>
-        <button>+</button>
+        <CreateRestaurant />
       </div>
 
       <table>

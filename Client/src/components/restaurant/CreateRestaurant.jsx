@@ -1,23 +1,49 @@
-{/* Let's see if I can re-use this component to save some time for the update function */}
+import { useRef, useState, useEffect } from "react";
+import Modal from "./Modal";
 
-function CreateRestaurant({id, header, body, onClose}){
+function CreateRestaurant(){
+  const [showModalPopup, setShowModalPopup] = useState(false)  
+  const ref = useRef()
+
+  function useOnClickOutsideModal(ref, handler){
+    useEffect(() => {
+      function listener(e) {
+        if (!ref.current || ref.current.contains(e.target)) {
+          return;
+        }
+  
+        handler(e);
+      }
+  
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+  
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    }, [ref, handler]);
+  }
+  
+  useOnClickOutsideModal(ref, () => setShowModalPopup(false))
+
+  function handleToggleModalPopup() {
+    setShowModalPopup(!showModalPopup);
+  }
+
+  function onClose(){
+    setShowModalPopup(false);
+  }
+
     return(<>
-        <div id={id || "Modal"}>
-            <div className="modal-content">
-                <div className="header">
-                    <span onClick={onClose} className="close-modal-icon">&times;</span>
-                    <h2>{header ? header : "Create a new Restaurant"}</h2>
-                </div>
-                <div className="body">
-                    {body ? (
-                        body
-                    ) : (
-                        <div>
-                        <p>This has to be a form</p>
-                        </div>
-                    )}
-                </div>
-            </div>
+        <div>
+        <button onClick={handleToggleModalPopup}>+</button>
+        <div ref={ref}>
+            {showModalPopup && <Modal 
+            id={"custom-id"}
+            onClose={onClose}
+            />}
+        </div>
         </div>
     </>)
 }
