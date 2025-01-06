@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './css/ModalRestaurant.css'
 
 {/* Let's see if I can re-use this component to save some time for the update function */}
 
@@ -45,7 +46,7 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
     }
 
     return(<>
-        <div id={id || "Modal"}>
+        <div id={id || "Modal"} className="modal">
             <div className="modal-content">
                 <div className="header">
                     <span onClick={onClose} className="close-modal-icon">&times;</span>
@@ -55,7 +56,7 @@ function Modal({id, header, body, onClose, nameUp, locationUp, priceRangeUp}){
                     {body ? (
                         body
                     ) : (
-                        <div>
+                        <div className="body">
                             <form onSubmit={onSubmit}>
                                 <h5>Name:</h5>
                                 <input type="text" value={name} onChange={e => setName(e.target.value)}/>

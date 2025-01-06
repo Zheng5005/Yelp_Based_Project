@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ListRestaurants from "../components/restaurant/ListRestaurants";
 import CreateRestaurant from "../components/restaurant/CreateRestaurant";
+import './Restaurant.css'
 
 function Restaurants({ url }) {
   const [restaurants, setRestaurants] = useState([]);
