@@ -6,7 +6,7 @@ const restaurants = require('./routes/Restaurants')
 const review = require('./routes/Reviews')
 
 const restaurantRoute = '/api/v1/restaurants'
-//const reviewRoute = restaurantRoute + '/reviews'
+const reviewRoute = '/api/v1/reviews'
 
 require('dotenv').config()
 
@@ -18,7 +18,7 @@ app.use(express.json());
 
 //Routes
 app.use(restaurantRoute, restaurants)
-app.use('/api/v1/reviews', review)
+app.use(reviewRoute, review)
 
 app.listen(port, () => {
     console.log(`Server Listening on PORT: ${port}`);
