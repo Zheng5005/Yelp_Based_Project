@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./css/ListRestaurant.css";
 import DeleteRestaurant from "./DeleteRestaurant";
 import EditRestaurant from "./EditRestaurant";
@@ -6,7 +7,7 @@ function ListRestaurants({ restaurant }) {
   return (
     <>
       <tr key={restaurant.id}>
-        <td><a href="#">{restaurant.name}</a></td> 
+        <td><NavLink to={`/reviews/${restaurant.id}`}>{restaurant.name}</NavLink></td>
         <td>{restaurant.location}</td>
         <td>{restaurant.price_range}</td>
         <td>Stars</td>

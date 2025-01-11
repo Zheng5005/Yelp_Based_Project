@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react"
+import { NavLink, useParams } from "react-router-dom"
 
-function Reviews({restaurant}){
-    const [data, setData] = useState()
+function Reviews(){
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [name, setName] = useState("")
     const [review, setReview] = useState("")
     const [Rating, setRating] = useState(1)
+    const [restaurantName, setRestaurantName] = useState("")
+    const { id } = useParams();
 
     async function fetchdata() {
         try {
             setLoading(true)
-            const res = await fetch(`http://localhost:3000/api/v1/restaurants`)
-            const fetchedData = await res.json()
 
-            if(fetchedData){
-                setData(fetchedData)
+            const [reviewsRes, restaurantNameRes] = await Promise.all([
+                fetch(`http://localhost:3000/api/v1/reviews/${id}`),
+                fetch(`http://localhost:3000/api/v1/restaurants/${id}`)
+            ])
+
+            const reviewsData = await reviewsRes.json()
+            const restaurantName = await restaurantNameRes.json()
+
+            if(restaurantName){
+                setRestaurantName(restaurantName)
+                if(reviewsData){
+                    setData(reviewsData)
+                }
                 setLoading(false)
             }
 
@@ -33,10 +45,13 @@ function Reviews({restaurant}){
         return <div>Loading please wait</div>;
     }
 
+    console.log(data)
+    console.log(restaurantName)
+
     return(<>
-        <h1>{restaurant.name}</h1> {/* Star Rating */} <br/>
+        <NavLink to={"/"}>Home</NavLink>
+        <h1>{restaurantName.name}</h1><br/>
         
-        <Card /> {/* This has to be a map, and you have to pass the data object (reviews) */}
         <br/>
 
         <h3>Leave your Review</h3> <br/>

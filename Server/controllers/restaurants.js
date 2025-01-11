@@ -9,6 +9,18 @@ const getAllRestaurants = async (req, res) => {
     }
 }
 
+const getARestaurants = async (req, res) => {
+    try {
+        const {id} = req.params
+        const restaurant = await pool.query("SELECT name FROM restaurants WHERE id = $1",
+            [id]
+        )
+        res.status(200).json(restaurant.rows[0])
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const createRestauant = async (req, res) => {
     try {
         const {name, location, price_range} = req.body
@@ -48,6 +60,7 @@ const deleteRestaurant = async (req, res) => {
 
 module.exports = {
     getAllRestaurants,
+    getARestaurants,
     createRestauant,
     updateRestaurant,
     deleteRestaurant
