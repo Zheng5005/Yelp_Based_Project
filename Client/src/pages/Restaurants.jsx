@@ -36,7 +36,7 @@ function Restaurants({ url }) {
 
   return (
     <div>
-      <div>
+      <div style={{"display": "flex"}}>
         <h1>Restaurants</h1>
         <CreateRestaurant />
       </div>

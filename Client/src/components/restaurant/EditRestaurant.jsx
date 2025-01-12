@@ -37,7 +37,15 @@ function EditRestaurant({restaurant}){
 
     return(<>
         <div>
-        <button onClick={handleToggleModalPopup}>Update</button>
+        <button onClick={handleToggleModalPopup} style={{
+            "background-color": "yellow",
+            color: "black",
+            padding: "10px 15px",
+            border: "none",
+            "border-radius": "5px",
+            cursor: "pointer",
+            "font-size": "14px",
+          }}>Update</button>
         <div ref={ref}>
             {showModalPopup && <Modal 
             id={restaurant.id}

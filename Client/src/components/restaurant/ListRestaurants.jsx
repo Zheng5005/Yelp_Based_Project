@@ -11,7 +11,7 @@ function ListRestaurants({ restaurant }) {
         <td>{restaurant.location}</td>
         <td>{restaurant.price_range}</td>
         <td>Stars</td>
-        <td>
+        <td style={{display: "flex"}}>
           <EditRestaurant restaurant={restaurant}/>
           <DeleteRestaurant restaurant={restaurant}/>
         </td>

@@ -1,0 +1,72 @@
+/* Main container for the reviews page */
+.reviews-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* NavLink for home */
+  .reviews-container a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  
+  .reviews-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Restaurant title */
+  .reviews-container h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form section */
+  .reviews-container form {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reviews-container form h5 {
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .reviews-container form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .reviews-container form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .reviews-container form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Reviews heading */
+  .reviews-container h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
