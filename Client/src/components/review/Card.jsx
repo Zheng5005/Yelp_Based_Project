@@ -1,3 +1,4 @@
+import Stars from "../stars/Stars";
 import "./Card.css"
 
 function Card({ review }) {
@@ -6,7 +7,7 @@ function Card({ review }) {
       <div className="card">
         <div className="card-header">
           <h6>{review.name}</h6>
-          <p>{review.rating} Stars</p>
+          <p><Stars rating={review.rating}/></p>
         </div>
         <div className="card-body">
           <p>{review.review}</p>

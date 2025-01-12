@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Card from "../components/review/Card";
 import "./Reviews.css";
+import Stars from "../components/stars/Stars";
 
 function Reviews() {
   const [data, setData] = useState([]);
@@ -74,10 +75,10 @@ function Reviews() {
     <>
       <div className="reviews-container">
         <NavLink to={"/"}>Home</NavLink>
-        <h1>{restaurantName.name} - Stars (It can't be changeable)</h1>
+        <h1>{restaurantName.name}  <Stars rating={restaurantName.avg_rating}/></h1>
         <br />
         {data.map((review) => (
-        <Card review={review} key={review.id} />
+          <Card review={review} key={review.id} />
         ))}
         <br />
         <h3>Leave your Review</h3>

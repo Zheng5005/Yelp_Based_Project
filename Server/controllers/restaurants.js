@@ -2,7 +2,7 @@ const pool = require('../db')
 
 const getAllRestaurants = async (req, res) => {
     try {
-        const restaurants = await pool.query("SELECT * FROM restaurants");
+        const restaurants = await pool.query("SELECT restaurants.*, TRUNC(AVG(reviews.rating), 2) AS avg_rating FROM restaurants JOIN reviews ON restaurants.id = reviews.restaurant_id GROUP BY restaurants.id");
         res.status(200).json(restaurants.rows)
     } catch (error) {
         console.log(error)
@@ -12,7 +12,7 @@ const getAllRestaurants = async (req, res) => {
 const getARestaurants = async (req, res) => {
     try {
         const {id} = req.params
-        const restaurant = await pool.query("SELECT name FROM restaurants WHERE id = $1",
+        const restaurant = await pool.query("SELECT restaurants.name, TRUNC(AVG(reviews.rating), 2) AS avg_rating FROM restaurants JOIN reviews ON restaurants.id = reviews.restaurant_id WHERE restaurants.id = $1 GROUP BY restaurants.name",
             [id]
         )
         res.status(200).json(restaurant.rows[0])
